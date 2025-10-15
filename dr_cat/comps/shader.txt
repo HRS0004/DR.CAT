@@ -1,0 +1,163 @@
+https://codepen.io/CedSharp/pen/yLQzObr
+
+Html:<canvas id="canvas"></canvas>
+<main>
+  <h1>Hello World!</h1>
+  <div style="height: 100vh"></div>
+  <h1>Hello World!</h1>
+  <div style="height: 100vh"></div>
+  <h1>Hello World!</h1>
+  <div style="height: 100vh"></div>
+  <h1>Hello World!</h1>
+</main>
+CSS:body, body * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: black;
+  min-height: 100vh;
+  font-family: sans-serif;
+  color: white;
+}
+
+#canvas {
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+main {
+  position: relative;
+}
+JS:const canvas = document.getElementById("canvas");
+const gl = canvas.getContext("webgl");
+
+// Set up shaders
+const vertexShaderSource = `
+  attribute vec2 position;
+  void main() {
+    gl_Position = vec4(position, 0.0, 1.0);
+  }
+`;
+
+const fragmentShaderSource = `
+  precision mediump float;
+
+  uniform float time;
+  uniform float scroll;
+  uniform vec2 resolution;
+
+  float random(vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453);
+  }
+
+  float noise(vec2 st) {
+    vec2 i = floor(st);
+    vec2 f = fract(st);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+    vec2 u = f * f * (3.0 - 2.0 * f);
+
+    return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+  }
+
+  void main() {
+    vec2 st = gl_FragCoord.xy / resolution.xy;
+    vec2 uv = st + vec2(time * 0.15) - vec2(0.0, scroll / resolution.y);
+    vec2 movement = vec2(cos(time * 0.03), sin(time * 0.02));
+    vec2 scale = vec2(1.0, 1.0);
+
+    vec2 distortedUV = st + noise(uv) * movement;
+    distortedUV *= scale;
+
+    gl_FragColor = vec4(noise(distortedUV), 0.0, noise(distortedUV), 1.0);
+  }
+`;
+
+// Create shaders and program
+function createShader(gl, type, source) {
+  const shader = gl.createShader(type);
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  return shader;
+}
+
+function createProgram(gl, vertexShader, fragmentShader) {
+  const program = gl.createProgram();
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  return program;
+}
+
+// Initialize the program
+function initProgram() {
+  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+  const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+
+  const program = createProgram(gl, vertexShader, fragmentShader);
+
+  gl.useProgram(program);
+
+  const positionAttributeLocation = gl.getAttribLocation(program, "position");
+  const positionBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+
+  gl.enableVertexAttribArray(positionAttributeLocation);
+  gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+
+  const timeUniformLocation = gl.getUniformLocation(program, "time");
+  const scrollUniformLocation = gl.getUniformLocation(program, "scroll");
+  const resolutionUniformLocation = gl.getUniformLocation(program, "resolution");
+
+  gl.uniform2f(resolutionUniformLocation, canvas.width, canvas.height);
+
+  return {
+    program,
+    scrollUniformLocation,
+    timeUniformLocation,
+  };
+}
+
+// Render the animation
+function render() {
+  gl.uniform1f(program.timeUniformLocation, performance.now() / 1000);
+  gl.uniform1f(program.scrollUniformLocation, document.scrollingElement.scrollTop);
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  requestAnimationFrame(render);
+}
+
+// Initialize WebGL
+function initWebGL() {
+  gl.viewport(0, 0, canvas.width, canvas.height);
+  gl.clearColor(0, 0, 0, 1);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+
+  program = initProgram();
+  render();
+}
+
+// Resize canvas on window resize
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  initWebGL();
+}
+
+// Attach resize event listener
+window.addEventListener("resize", resizeCanvas);
+
+// Initialize WebGL on page load
+window.addEventListener("load", () => {
+  resizeCanvas();
+});

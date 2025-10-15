@@ -1,0 +1,56 @@
+HTML:<div class="noise_overlay"></div>
+<canvas id="gradient-canvas">
+</canvas>
+<div class="main_container">
+  <h1>SVG<br>Noise<br>Gradient</h1>
+</div>
+CSS:body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+.noise_overlay{
+    position: fixed;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewbox='0 0 255 255'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='franctalNoise' baseFrequency='1.2'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100vh' filter='url(%23noiseFilter)'%3E%3C/rect%3E%3C/svg%3E");
+}
+#gradient-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    min-height:100vh;
+    height: auto;
+    --gradient-color-1: #f91010;
+    --gradient-color-2: #ff0000;
+    --gradient-color-3: #330000; 
+    --gradient-color-4: #000000;
+    z-index:-1;
+}
+
+.main_container{
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    color: white;
+}
+.main_container h1{
+    margin: 48px;
+    font-size: 5em;
+}
+JS:import { Gradient } from "https://gist.githack.com/jordienr/64bcf75f8b08641f205bd6a1a0d4ce1d/raw/35a5c7c1ddc9f97ec84fe7e1ab388a3b726db85d/Gradient.js";
+
+// Init gradient instance
+const gradient = new Gradient()
+gradient.initGradient('#gradient-canvas')

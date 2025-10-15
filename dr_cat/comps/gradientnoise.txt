@@ -1,0 +1,51 @@
+HTML:// functionally the same as a style, hide it
+svg(width='0' height='0' aria-hidden='true')
+	filter#grainy(x='0' y='0' width='100%' height='100%')
+		//- get a noise layer
+		feTurbulence(type='fractalNoise' baseFrequency='.537')
+		//- zero noise layer saturation
+		feColorMatrix(type='saturate' values='0')
+		//- blend with what we apply filter on
+		feBlend(mode='multiply' in='SourceGraphic')
+
+div
+
+p
+	a(href='https://stackoverflow.com/a/75054687/1397351' target='_blank') text explanation
+	|  * 
+	a(href='https://codepen.io/thebabydino/pen/VwBPygQ' target='_blank') text & shadow card with grainy background
+	|  * 
+	a(href='https://frontendmasters.com/blog/grainy-gradients/' target='_blank') better grainy gradients
+    CSS:/* ===== Relevant styles ===== */
+/* functionally the same as a style, take it out of documen flow */
+svg[height='0'] { position: fixed }
+
+div {
+	background: /**/
+		radial-gradient(circle, mediumturquoise, darkslateblue)
+		/* also works with an actual image, 
+		 * not just with a CSS gradient *
+		url(https://images.unsplash.com/photo-1633596683562-4a47eb4983c5?w=1400) 
+			50%/ cover/**/;
+	filter: url(#grainy)
+}
+
+/* ===== Layout & text prettifying styles ===== */
+html, body, div { display: grid }
+
+html { height: 100% }
+
+body { grid-template-rows: 1fr max-content }
+
+p {
+	margin: 0;
+	padding: .5em;
+	font: clamp(.625em, 5vw, 1.25em) trebuchet ms, 
+		ubuntu, verdana, arial, sans-serif
+}
+
+a { color: mediumvioletred }
+a:is(:hover, :focus) { color: crimson }
+JS:/* absolutey no JS 🙃 */
+/* see a card with text and shadow using such a gradient background 
+ * https://codepen.io/thebabydino/pen/VwBPygQ */

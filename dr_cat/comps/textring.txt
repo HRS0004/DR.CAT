@@ -1,0 +1,42 @@
+HTML:<p id='text'></p>
+CSS:body{
+  margin:0;
+  heght:100vh;
+  background: radial-gradient(circle, rgba(191,0,68,1) 0%, rgba(255,57,57,1) 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  
+}
+p{
+  position:relative;
+  width:300px;
+  height:300px;
+  animation:effect 8s linear infinite;
+}
+span{
+  position:absolute;
+  left:50%;
+  display:block;
+  transform-origin:0 150px;
+  text-transform:uppercase;
+  color:#fff;
+}
+@keyframes effect{
+  0%{
+    transform:rotate(0);
+  }
+  100%{
+    transform:rotate(360deg)
+  }
+}
+JS:const str='Just trying new things everyday';
+const text=document.getElementById('text');
+                                  window.onload=()=>{
+ for(let i=0;i<str.length;i++){
+ let span=document.createElement('span');
+   span.innerText=str[i];
+                      text.appendChild(span);
+                      span.style.transform=`rotate(${i*11}deg)`;
+       }                
+       }

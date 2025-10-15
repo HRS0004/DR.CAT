@@ -1,0 +1,61 @@
+HTML:
+.center
+  - 255.times do
+    .color
+
+css:@import 'compass';
+$d: .5em;
+$n: 255;
+
+.center {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  -webkit-animation: brot 60s linear infinite;
+  -moz-animation: brot 60s linear infinite;
+  animation: brot 60s linear infinite;    
+}
+
+.color {
+  position: absolute;
+  top: $d;
+  left: $d;
+  margin: -$d/2;
+  border-radius: 100%;
+  width: $d*6;
+  height: $d*6;
+  background: rgba(255, 2.5, 100, .5);
+  -webkit-animation: pulse 12s ease infinite;
+  -moz-animation: pulse 12s ease infinite;
+  animation: pulse 12s ease infinite;   
+  backface-visibility: hidden;
+  
+  @for $i from 0 to $n {
+    $r : $d/5 - $i*($d/10);
+    $x : $r*cos($i);
+    $y : $r*sin($i);
+  
+    $b : 170;
+    
+    &:nth-child(#{$i + 1}) {
+      top: $y;
+      left: $x;   
+      background: rgba(255-$i, 0+$i, $b, .5);    
+    }
+  }
+}
+
+
+@-webkit-keyframes pulse { 
+    50% { -webkit-transform: scale(0.125);}
+}
+@-moz-keyframes pulse { 
+    50% { -moz-transform: scale(0.125);}
+}
+@keyframes pulse { 
+    50% { transform: scale(0.125);}
+}
+
+@-webkit-keyframes brot { to { -webkit-transform: rotate(360deg); } }
+@-moz-keyframes brot { to { -moz-transform: rotate(360deg); } }
+@keyframes brot { to { transform: rotate(360deg); } }

@@ -1,0 +1,148 @@
+HTML:// NOTE: Chrome works better
+
+- var bars = 20
+div(class="container")
+	div(class="circle")
+		each el in Array(bars)
+			div(class="bar")
+	
+
+// Gooey effect from: https://css-tricks.com/gooey-effect/
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><defs>
+	<filter id="goo">
+		<feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+		<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+		<feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+	</filter>
+</defs></svg>
+CSS:
+$radius: 50%;
+$time: 7s;
+
+body {
+	background-color: black;
+}
+
+.container {
+	width: 30rem;
+	height: 100vh;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	overflow: hidden;	
+	filter:url("#goo");
+}
+
+.circle {
+	position: absolute; top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
+	width: 20rem;
+	height: 20rem;
+	border-radius: $radius;
+	border: 0.5rem solid;
+	animation: color $time infinite alternate;
+	
+	&::before,
+	&::after {
+		content: '';
+		position: absolute; top: 50%; left: 50%;
+		transform: translate(-50%, -50%) rotate(45deg);
+		width: 50%;
+		height: 50%;
+		border-radius: $radius;
+		border: 0.3rem solid;
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	&::before {
+		animation: grow $time infinite -#{$time} alternate;
+	}
+	
+	&::after {
+		animation: grow $time infinite -#{$time*2} alternate;
+	}
+}
+
+@mixin bar($n, $left, $top, $width, $height, $bg: false) {
+	&:nth-child(#{$n}) {
+		left: $left;
+		top: $top;
+		width: $width*1.15;
+		height: $height;
+		@if $bg != false {
+			background: $bg;
+		}
+	}
+}
+
+@keyframes grow {
+	from {
+   	transform: translate(-50%, -50%) scale(0);
+	}
+	
+	to {
+   	transform: translate(-50%, -50%) scale(2);
+	}
+}
+
+@keyframes color {
+	0% { color: #cfff94; }
+	50% { color: #ace9ff; }
+	100% { color: #ff9494; }
+}
+
+@keyframes go {
+	from { top: -150% }
+	to { top: 150% }
+}
+
+.bar {
+	position: absolute;
+	border-radius: 1rem;
+	
+	@include bar(1, 0, 0, 0.5rem, 10rem,
+		linear-gradient(#f7ff94, #ffacac));
+	@include bar(2, 5%, 10%, 0.3rem, 5rem,
+		linear-gradient(#ff9494, #ace9ff));
+	@include bar(3, 10%, 40%, 0.5rem, 13rem,
+		linear-gradient(#33c9ff, #cfff94));
+	@include bar(4, 20%, 50%, 0.5rem, 7rem,
+		linear-gradient(#ace9ff, #ff9494));
+	@include bar(5, 50%, 5%, 0.5rem, 5rem,
+		linear-gradient(#cfff94, #33c9ff));
+	@include bar(6, 53%, 80%, 0.5rem, 10rem,
+		linear-gradient(#ace9ff, #ff9494));
+	@include bar(7, 75%, 45%, 0.5rem, 5rem,
+		linear-gradient(#f7ff94, #ffacac));
+	@include bar(8, 85%, -25%, 0.5rem, 12rem,
+		linear-gradient(#33c9ff, #cfff94));
+	@include bar(9, 75%, 80%, 0.5rem, 5rem,
+		linear-gradient(#f7ff94, #ffacac));
+	@include bar(10, 95%, 25%, 0.3rem, 10rem,
+		linear-gradient(#cfff94, #33c9ff));
+	
+	// horizontal bars
+	@include bar(11, 35%, 25%, 10rem, 0.3rem,
+		linear-gradient(to right, #cfff94, #33c9ff));
+	@include bar(12, -20%, 65%, 15rem, 0.5rem,
+		linear-gradient(to right, #33c9ff, #cfff94));
+	@include bar(13, 35%, 45%, 10rem, 0.4rem,
+		linear-gradient(to right, #ace9ff, #ff9494));
+	@include bar(14, 35%, 55%, 5rem, 0.5rem,
+		linear-gradient(to right, #ff9494, #ace9ff));
+	@include bar(15, 15%, 15%, 10rem, 0.5rem,
+		linear-gradient(to right, #f7ff94, #ffacac));
+	@include bar(16, 20%, 50%, 5rem, 0.3rem,
+		linear-gradient(to right, #ff9494, #ace9ff));
+	@include bar(17, 10%, 90%, 5rem, 0.5rem,
+		linear-gradient(to right, #f7ff94, #ffacac));
+	@include bar(18, 15%, 35%, 5rem, 0.5rem,
+		linear-gradient(to right, #f7ff94, #ffacac));
+
+	@include bar(19, 60%, 30%, 0.3rem, 15rem,
+		linear-gradient(#cfff94, #33c9ff));
+	@include bar(20, 75%, 75%, 0.3rem, 5rem,
+		linear-gradient(#33c9ff, #cfff94));
+}
