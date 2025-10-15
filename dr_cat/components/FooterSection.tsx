@@ -45,13 +45,13 @@ export default function FooterSection() {
       
       {/* Modern CTA Section - Proportionally sized and centered */}
       <section className="flex flex-col items-center justify-center text-center py-20 px-8 mx-auto">
-        <div className="relative inline-block rounded-[2rem] p-1">
-          <HoverBorderGradient as="div" containerClassName="rounded-[2rem]">
-            <div className="liquid-glass relative overflow-hidden rounded-[2rem] p-8 lg:p-12 text-center">
-              <h2 className="text-2xl lg:text-3xl font-semibold mb-3 text-white drop-shadow-2xl text-balance text-center">
+        <div className="relative inline-block rounded-[2.5rem] p-1">
+          <HoverBorderGradient as="div" containerClassName="rounded-[2.5rem]">
+            <div className="liquid-glass relative overflow-hidden rounded-[2.5rem] p-12 lg:p-16 text-center">
+              <h2 className="text-3xl lg:text-4xl font-semibold mb-3 text-white drop-shadow-2xl text-balance text-center">
                 Transform Your Confidence Today
               </h2>
-              <p className="text-sm lg:text-base text-white/80 mb-4 max-w-lg mx-auto leading-relaxed">
+              <p className="text-base lg:text-lg text-white/80 mb-4 max-w-lg mx-auto leading-relaxed">
                 Begin your journey to renewed confidence with personalized treatments designed just for you.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
