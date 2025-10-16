@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
   --background: oklch(0 0 0);
   --foreground: oklch(1 0 0);
@@ -39,6 +37,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+/* Dark mode variables */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -74,484 +73,451 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-@theme inline {
-  /* Updated font variables for modern medical typography */
-  --font-serif: var(--font-crimson-text);
-  --font-sans: var(--font-poppins);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+/* Base styles */
+* {
+  border-color: var(--border);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-
-  /* Remove button focus outline glow and add smooth animations */
-  button:focus {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-
-  button:focus-visible {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-
-  /* Smooth button click animations */
-  .btn-smooth {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: center;
-  }
-
-  .btn-smooth:active {
-    transform: scale(0.95);
-    transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .btn-smooth:hover {
-    transform: translateY(-2px);
-  }
-
-  /* Adding elegant typography hierarchy */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-serif text-white font-bold;
-  }
-
-  p,
-  span,
-  div,
-  a,
-  button,
-  input,
-  textarea,
-  label {
-    @apply font-sans;
-  }
-
-  /* Enhanced typography styles for medical elegance */
-  .heading-primary {
-    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
-  }
-
-  .heading-secondary {
-    @apply font-serif text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight;
-  }
-
-  .heading-tertiary {
-    @apply font-serif text-2xl md:text-3xl font-bold tracking-tight;
-  }
-
-  .body-large {
-    @apply font-sans text-lg md:text-xl leading-relaxed font-normal;
-  }
-
-  .body-regular {
-    @apply font-sans text-base leading-relaxed;
-  }
-
-  .body-small {
-    @apply font-sans text-sm leading-relaxed;
-  }
-
-  /* Enhanced breathing background animation */
-  @keyframes breathe {
-    0%, 100% {
-      transform: scale(1) rotate(0deg);
-      opacity: 0.7;
-      filter: blur(0px);
-    }
-    50% {
-      transform: scale(1.08) rotate(0.5deg);
-      opacity: 0.95;
-      filter: blur(1px);
-    }
-  }
-
-  @keyframes noiseShift {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(-2px, -1px); }
-    50% { transform: translate(1px, -2px); }
-    75% { transform: translate(-1px, 1px); }
-  }
-
-  .breathing-background {
-    animation: breathe 5s ease-in-out infinite;
-  }
-
-  .noise-overlay {
-    animation: noiseShift 4s ease-in-out infinite;
-  }
-
-  /* Fixed backlight effect for service tiles */
-  @keyframes animateBacklight {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  /* Enhanced particle canvas styles */
-  .particle-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* Improved service tile backlight effect to work with particles */
-  .service-tile-backlight {
-    position: relative;
-    overflow: hidden;
-    z-index: 2;
-  }
-
-  .service-tile-backlight::after {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
-    z-index: -1;
-    transform: scale(0.95);
-    filter: blur(20px);
-    background: linear-gradient(270deg, #e0004d, #ff6b9d, #ffa8cc, #ffd6e8);
-    background-size: 200% 200%;
-    animation: animateBacklight 8s ease infinite;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    border-radius: 24px;
-  }
-
-  .service-tile-backlight:hover::after {
-    opacity: 0.4;
-  }
-
-  /* Pink backlight for blog tiles */
-  .blog-tile-backlight {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .blog-tile-backlight::after {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
-    z-index: -1;
-    transform: scale(0.95);
-    filter: blur(20px);
-    background: linear-gradient(270deg, #ec4899, #f472b6, #f9a8d4, #fbcfe8);
-    background-size: 200% 200%;
-    animation: animateBacklight 9s ease infinite;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    border-radius: 16px;
-  }
-
-  .blog-tile-backlight:hover::after {
-    opacity: 0.5;
-  }
-
-  /* Enhanced liquid glass for better particle visibility */
-  .liquid-glass {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    z-index: 2;
-  }
-
-  .liquid-glass:hover {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    transform: translateY(-2px);
-    box-shadow:
-      0 12px 40px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  }
-
-  /* Ensure text remains readable over particles */
-  .heading-primary,
-  .heading-tertiary,
-  .body-large,
-  .body-regular {
-    position: relative;
-    z-index: 2;
-  }
-
-  /* Particle container positioning */
-  .particle-container {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-  }
-
-  /* Ultra-Smooth Navbar Animation States */
-  .navbar-scrolled {
-    max-width: 56rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    transition: max-width 0.4s cubic-bezier(0.23, 1, 0.32, 1), padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: max-width, padding;
-    transform: translateZ(0);
-  }
-
-  .navbar-compressed {
-    max-width: 18rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    transition: max-width 0.4s cubic-bezier(0.23, 1, 0.32, 1), padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: max-width, padding;
-    transform: translateZ(0);
-  }
-
-  /* Logo Animation - Perfectly Timed */
-  .logo-normal {
-    transform: translate3d(0, 0, 0);
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-
-  .logo-compressed {
-    transform: translate3d(1.5rem, 0, 0);
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-
-  /* Button Animation - Perfectly Timed */
-  .button-normal {
-    transform: translate3d(0, 0, 0);
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-
-  .button-compressed {
-    transform: translate3d(-1.5rem, 0, 0);
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-
-  /* Navigation Links - Fast Fade */
-  .nav-links-visible {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
-    pointer-events: auto;
-    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
-    will-change: opacity, transform;
-    backface-visibility: hidden;
-  }
-
-  .nav-links-hidden {
-    opacity: 0;
-    transform: scale3d(1, 1, 1);
-    pointer-events: none;
-    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
-    will-change: opacity, transform;
-    backface-visibility: hidden;
-  }
+*:focus {
+  outline-color: var(--ring);
 }
 
-/* Carousel Animation Styles */
-:root {
-  --color-primary: #ffffff;
-  --color-secondary: #000000;
-  --color-gray-1: #1a1a1a;
-  --color-gray-2: #222222;
-  --color-gray-3: #2a2a2a;
-  --color-gray-4: #333333;
-  --color-gray-5: #3a3a3a;
-  --color-gray-6: #444444;
-  --color-gray-7: #4a4a4a;
-  --color-gray-8: #555555;
-  --card-width: 430px;
-  --card-height: 610px;
-  --card-border-radius: 6px;
-  --animation-duration-slow: 1.5s;
-  --animation-duration-medium: 1s;
-  --animation-duration-fast: 0.5s;
-  --transition-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
-.carousel-container {
+/* Remove button focus outline glow and add smooth animations */
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Smooth button click animations */
+.btn-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.btn-smooth:active {
+  transform: scale(0.95);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-smooth:hover {
+  transform: translateY(-2px);
+}
+
+/* Clean Bottom to Top Loading Animation - No Gradient */
+.glow-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.glow-button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 800px;
+  height: 0%;
+  background: hsl(347, 77%, 49%);
+  transition: height 0.3s ease;
+  z-index: 1;
+}
+
+.glow-button:hover::before {
+  height: 100%;
+}
+
+.glow-button span {
   position: relative;
-  user-select: none;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 2500px;
-  margin: 0 auto;
+  z-index: 2;
 }
 
-.carousel-items {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transform-origin: center center;
-  user-select: none;
+/* Loading state - bottom to top animation */
+.glow-button.loading::before {
+  height: 100%;
+  animation: bottomToTop 1.5s ease-in-out;
 }
 
-.carousel-items.draggable {
-  cursor: grab;
+@keyframes bottomToTop {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 100%;
+  }
 }
 
-.carousel-items.draggable:active {
-  cursor: grabbing;
-}
-
-.carousel-item {
-  position: absolute;
-  width: var(--card-width);
-  height: var(--card-height);
-  border-radius: var(--card-border-radius);
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: translate(-50%, -50%);
-  transform-origin: center center;
-  user-select: none;
-  cursor: pointer;
-  background-size: cover;
-  background-position: center;
-}
-
-.card__number {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
-  z-index: 10;
-  font-weight: bold;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.switch {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 20px;
-  background-color: #222;
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.015) 1px,
-    transparent 0
-  );
-  background-size: 7px 7px;
-  background-position: -1px -1px;
-  padding: 10px 20px;
-  border-radius: 4px;
-  z-index: 1000;
-  transition: padding 0.3s ease-in-out;
-}
-
-.switch-button {
-  background: none;
-  border: none;
-  color: #666;
-  cursor: pointer;
-  font-family: "TheGoodMonolith", monospace;
-  font-size: 14px;
-  padding: 5px 10px;
+/* Testimonial Control Button Animations */
+.testimonial-ctrl {
   position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.testimonial-ctrl::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: hsl(347, 77%, 49%);
+  transition: height 0.3s ease;
+  z-index: 1;
+}
+
+.testimonial-ctrl:hover::before {
+  height: 100%;
+}
+
+.testimonial-ctrl svg {
+  position: relative;
+  z-index: 2;
+}
+
+/* Loading state for testimonial buttons */
+.testimonial-ctrl.loading::before {
+  height: 100%;
+  animation: bottomToTop 1.5s ease-in-out;
+}
+
+/* Adding elegant typography hierarchy */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif), serif;
+  color: white;
+  font-weight: 300;
+}
+
+p,
+span,
+div,
+a,
+button,
+input,
+textarea,
+label {
+  font-family: var(--font-sans), sans-serif;
+}
+
+/* Enhanced typography styles for medical elegance */
+.heading-primary {
+  font-family: var(--font-serif), serif;
+  font-size: 4rem;
+  line-height: 2.5rem;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .heading-primary {
+    font-size: 5.5rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heading-primary {
+    font-size: 7rem;
+    line-height: 1;
+  }
+}
+
+.heading-secondary {
+  font-family: var(--font-serif), serif;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .heading-secondary {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heading-secondary {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+.heading-tertiary {
+  font-family: var(--font-serif), serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .heading-tertiary {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+.body-large {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+  font-weight: 300;
+  line-height: 1.625;
+}
+
+@media (min-width: 768px) {
+  .body-large {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+}
+
+.body-regular {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  line-height: 1.625;
+}
+
+.body-small {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  line-height: 1.625;
+}
+
+/* Enhanced breathing background animation */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.7;
+    filter: blur(0px);
+  }
+  50% {
+    transform: scale(1.08) rotate(0.5deg);
+    opacity: 0.95;
+    filter: blur(1px);
+  }
+}
+
+@keyframes noiseShift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, -1px); }
+  50% { transform: translate(1px, -2px); }
+  75% { transform: translate(-1px, 1px); }
+}
+
+.breathing-background {
+  animation: breathe 5s ease-in-out infinite;
+}
+
+.noise-overlay {
+  animation: noiseShift 4s ease-in-out infinite;
+}
+
+/* SUBTLE backlight effect for service tiles */
+@keyframes animateBacklight {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.service-tile-backlight {
+  position: relative;
+  overflow: hidden;
+}
+
+/* SUBTLE Blue backlight for all service tiles */
+.service-tile-backlight::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  z-index: -1;
+  transform: scale(0.95);
+  /* Reduced blur for subtle effect */
+  filter: blur(12px);
+  background: linear-gradient(270deg, #1e40af, #3b82f6, #60a5fa, #93c5fd);
+  background-size: 200% 200%;
+  animation: animateBacklight 8s ease infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: 24px;
+}
+
+.service-tile-backlight:hover::after {
+  /* Reduced opacity for subtle effect */
+  opacity: 0.4;
+}
+
+/* SUBTLE Pink backlight for blog tiles */
+.blog-tile-backlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-tile-backlight::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  z-index: -1;
+  transform: scale(0.95);
+  /* Reduced blur for subtle effect */
+  filter: blur(12px);
+  background: linear-gradient(270deg, #ec4899, #f472b6, #f9a8d4, #fbcfe8);
+  background-size: 200% 200%;
+  animation: animateBacklight 9s ease infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: 16px;
+}
+
+.blog-tile-backlight:hover::after {
+  /* Reduced opacity for subtle effect */
+  opacity: 0.3;
+}
+
+/* Liquid glassmorphism for other tiles */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.liquid-glass:hover {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Ultra-Smooth Navbar Animation States */
+.navbar-scrolled {
+  max-width: 56rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transition: max-width 0.4s cubic-bezier(0.23, 1, 0.32, 1), padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: max-width, padding;
+  transform: translateZ(0);
+}
+
+.navbar-compressed {
+  max-width: 18rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  transition: max-width 0.4s cubic-bezier(0.23, 1, 0.32, 1), padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: max-width, padding;
+  transform: translateZ(0);
+}
+
+/* Logo Animation - Perfectly Timed */
+.logo-normal {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.logo-compressed {
+  transform: translate3d(1.5rem, 0, 0);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Button Animation - Perfectly Timed */
+.button-normal {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.button-compressed {
+  transform: translate3d(-1.5rem, 0, 0);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Navigation Links - Fast Fade */
+.nav-links-visible {
+  opacity: 1;
+  transform: scale3d(1, 1, 1);
+  pointer-events: auto;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+.nav-links-hidden {
+  opacity: 0;
+  transform: scale3d(1, 1, 1);
+  pointer-events: none;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+/* ✨ Elegant Roman numeral styling for ProcessSection */
+.roman-numeral {
+  font-family: var(--font-serif), serif;
+  font-size: 1.75rem;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 0 10px rgba(211, 32, 74, 0.4), 0 0 20px rgba(211, 32, 74, 0.25);
   transition: all 0.3s ease-in-out;
 }
 
-.switch-button-current {
-  color: #f0f0f0;
+/* When the circular tile (.liquid-glass) is hovered, tint the numeral */
+.liquid-glass:hover + div .roman-numeral {
+  color: #d3204a;
+  text-shadow: 0 0 12px rgba(211, 32, 74, 0.7);
 }
 
-/* Indicator dot */
-.indicator-dot {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background-color: #f0f0f0;
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.switch-button .indicator-dot {
-  left: -8px;
-}
-
-.switch-button:hover .indicator-dot {
-  opacity: 1;
-}
-
-@media screen and (max-height: 1000px) {
-  :root {
-    --card-width: 350px;
-    --card-height: 497px;
+/* --- FINAL DEFINITIVE RIGHT-TO-LEFT (R-to-L) MOTION --- */
+@keyframes continuousScroll {
+  /* This setup moves the container left, resulting in right-to-left scroll */
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 
-@media screen and (max-height: 800px) {
-  :root {
-    --card-width: 300px;
-    --card-height: 400px;
-  }
+/* Define the animation class, REMOVING 'reverse' */
+.animate-continuousScroll {
+  animation: continuousScroll 35s linear infinite;
+  will-change: transform;
 }
