@@ -1,0 +1,363 @@
+.section {
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* Background overlay for animation */
+.backgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d3204a;
+  z-index: -1;
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.heading {
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: .75rem;
+  color: var(--muted-foreground);
+  margin-bottom: 1rem;
+}
+
+.carousel {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.items {
+  position: relative;
+}
+
+.item {
+  display: none;
+}
+
+.itemActive {
+  display: inline-block;
+}
+
+.comma {
+  width: 24px;
+  height: 24px;
+  margin-right: .5rem;
+  vertical-align: top;
+}
+
+.text {
+  width: 100%;
+  padding-left: 0;
+  position: relative;
+  line-height: 1.6;
+  color: var(--foreground);
+  font-size: clamp(1.25rem, 2.2vw, 1.875rem);
+  font-weight: 400;
+  max-width: 56ch;
+}
+
+.signature {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.smallCircle {
+  border-radius: 50%;
+  text-align: center;
+  position: relative;
+  background-color: #b3b3b3;
+  border: 5px solid #ffffff;
+  width: 57px;
+  height: 57px;
+  overflow: hidden;
+}
+
+.avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.desig {
+  margin-left: 1rem;
+}
+
+.name {
+  display: block;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.role {
+  display: block;
+  color: var(--muted-foreground);
+}
+
+.controls {
+  display: flex;
+  gap: .5rem;
+  margin-top: 1.5rem;
+}
+
+.ctrl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 9999px;
+  background: #1F2633;
+  border: 1px solid #1F2633;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctrl:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.ctrl:active {
+  transform: scale(.95);
+}
+
+.ctrl svg {
+  position: relative;
+  z-index: 10;
+}
+
+/* Circle wrap - Adjusted positioning downward */
+.circleWrap {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.outCircle {
+  width: 500px;
+  height: 500px;
+  border: 1px solid #ffffff;
+  right: -22px;
+  position: absolute;
+  top: 80px;
+  border-radius: 50%;
+  transition: all .5s ease;
+}
+
+.outCircle:hover {
+  border-color: #00ffff;
+}
+
+.rotate {
+  width: 100%;
+  height: 100%;
+  animation: circle 35s infinite linear;
+}
+
+.counterrotate {
+  width: 183px;
+  height: 100px;
+  animation: ccircle 35s infinite linear;
+}
+
+.inner {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: -50px;
+  display: block;
+  border: 3px solid #ffffff;
+  background-color: #b3b3b3;
+  margin: 0 auto;
+  right: 0;
+}
+
+.outCircle2 {
+  width: 360px;
+  height: 360px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  right: 48px;
+  position: absolute;
+  top: 150px;
+  transition: all .5s ease;
+}
+
+.outCircle2:hover {
+  border-color: #00ffff;
+}
+
+.rotate2 {
+  width: 100%;
+  height: 100%;
+  animation: circle 25s infinite linear;
+}
+
+.counterrotate2 {
+  width: 171px;
+  height: 57px;
+  animation: ccircle 25s infinite linear;
+}
+
+.inner2 {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: -30px;
+  display: block;
+  border: 3px solid #ffffff;
+  background-color: #b3b3b3;
+  margin: 0 auto;
+  right: 0;
+}
+
+.outCircle3 {
+  width: 230px;
+  height: 230px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  right: 113px;
+  position: absolute;
+  top: 215px;
+  transition: all .5s ease;
+}
+
+.outCircle3:hover {
+  border-color: #00ffff;
+}
+
+.rotate3 {
+  width: 100%;
+  height: 100%;
+  animation: circleee 15s infinite linear;
+}
+
+.counterrotate3 {
+  width: 101px;
+  height: 82px;
+  animation: ccircleee 15s infinite linear;
+}
+
+.inner3 {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: -50px;
+  display: block;
+  border: 3px solid #ffffff;
+  background-color: #b3b3b3;
+  margin: 0 auto;
+  right: 0;
+}
+
+@keyframes circle {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes ccircle {
+  from {
+    transform: rotateZ(360deg);
+  }
+  to {
+    transform: rotateZ(0);
+  }
+}
+
+@keyframes circleee {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes ccircleee {
+  from {
+    transform: rotateZ(360deg);
+  }
+  to {
+    transform: rotateZ(0);
+  }
+}
+
+/* layout helpers */
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  margin-top: 0;
+}
+
+/* Video card - Updated to take full width */
+.videoCard {
+  margin-top: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  width: 100%;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  background: var(--muted);
+}
