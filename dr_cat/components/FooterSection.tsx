@@ -45,9 +45,9 @@ export default function FooterSection() {
       
       {/* Modern CTA Section - Proportionally sized and centered */}
       <section className="flex flex-col items-center justify-center text-center py-20 px-8 mx-auto">
-        <div className="relative inline-block rounded-[2.5rem] p-1">
+          <div className="relative inline-block rounded-[2.5rem] p-1">
           <HoverBorderGradient as="div" containerClassName="rounded-[2.5rem]">
-            <div className="liquid-glass relative overflow-hidden rounded-[2.5rem] p-12 lg:p-16 text-center">
+              <div className="liquid-glass relative overflow-hidden rounded-[2.5rem] p-12 lg:p-16 text-center">
               <h2 className="text-3xl lg:text-4xl font-semibold mb-3 text-white drop-shadow-2xl text-balance text-center">
                 Transform Your Confidence Today
               </h2>
@@ -116,7 +116,7 @@ export default function FooterSection() {
         {/* Middle Space for Future Logo */}
         <div className="hidden lg:block flex-1"></div>
 
-        {/* Right Section: 3 Columns + Policies */}
+        {/* Right Section: 3 Columns */}
         <nav className="flex flex-col flex-1 lg:w-2/3">
           {/* 3 Columns */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-6 text-sm">
@@ -128,9 +128,7 @@ export default function FooterSection() {
                 <li><a href="#services" className="text-gray-300 hover:text-white transition-colors duration-300 block">Non-Surgical</a></li>
                 <li><a href="#services" className="text-gray-300 hover:text-white transition-colors duration-300 block">Trichology</a></li>
               </ul>
-              <div className="mt-auto pt-2">
-                <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300 block text-left">Terms of Service</a>
-              </div>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300 block mt-auto">Terms of Service</a>
             </div>
 
             <div className="flex flex-col">
@@ -141,9 +139,7 @@ export default function FooterSection() {
                 <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300 block">Financing</a></li>
                 <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300 block">Contact</a></li>
               </ul>
-              <div className="mt-auto pt-2">
-                <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300 block text-left">Privacy Policy</a>
-              </div>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300 block mt-auto">Privacy Policy</a>
             </div>
 
             <div className="flex flex-col">
@@ -154,13 +150,9 @@ export default function FooterSection() {
                 <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300 block">Safety</a></li>
                 <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-300 block">Privacy</a></li>
               </ul>
-              <div className="mt-auto pt-2">
-                <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300 block text-left">Cookie Policy</a>
-              </div>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300 block mt-auto">Cookie Policy</a>
             </div>
           </div>
-
-
         </nav>
       </div>
 

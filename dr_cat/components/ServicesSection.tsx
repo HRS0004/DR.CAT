@@ -44,8 +44,9 @@ export default function ServicesSection() {
   ]
 
   return (
-    <section id="services" className="relative py-20 px-6 sm:px-12 lg:px-20 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
-      <div className="relative max-w-7xl mx-auto">
+    <section id="services" className="relative py-20 px-6 sm:px-8 lg:px-10 bg-gradient-to-br ...">
+  <div className="relative max-w-7xl mx-auto">
+
         {/* Section Header */}
         <div className="text-center mb-16 relative z-10">
           <h2
@@ -65,7 +66,7 @@ export default function ServicesSection() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group relative h-96 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-105 hover:-rotate-1 hover:shadow-3xl hover:shadow-[#e0004d]/20"
+              className="group relative h-[500px] rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-105 hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(224,0,77,0.25)]"
               style={{
                 backgroundImage: `url(${service.image || "/placeholder.jpg"})`,
                 backgroundSize: 'cover',
@@ -73,7 +74,7 @@ export default function ServicesSection() {
               }}
             >
               {/* Glassmorphism Overlay */}
-              <div className="absolute inset-0 bg-black/40 backdrop-blur-sm group-hover:bg-black/30 transition-all duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent group-hover:via-black/30 transition-all duration-500"></div>
 
               {/* Card Content */}
               <div className="relative h-full p-6 sm:p-8 flex flex-col justify-end">
