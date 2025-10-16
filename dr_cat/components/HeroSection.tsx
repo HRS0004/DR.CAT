@@ -26,8 +26,10 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 items-start">
-            <button className="btn-smooth rounded-lg font-normal relative cursor-pointer inline-block text-center px-16 py-8 text-2xl border bg-gradient-to-r from-red-800 to-red-700 border-red-600/30 text-white hover:from-red-700 hover:to-red-600">
-              Book Consultation
+            <button className="glow-button btn-smooth rounded-lg font-normal relative cursor-pointer inline-block text-center px-16 py-8 text-2xl border border-white text-white overflow-hidden transition-all duration-300 shadow-md hover:shadow-xl" style={{ backgroundColor: '#1F2633' }}>
+              <span className="relative z-10">
+                Book Consultation
+              </span>
             </button>
             <button className="btn-smooth rounded-lg font-normal relative cursor-pointer inline-block text-center px-16 py-8 text-2xl border border-white/30 text-white hover:bg-white/10">
               View Our Work

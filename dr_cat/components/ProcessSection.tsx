@@ -122,7 +122,7 @@ export default function ProcessSection() {
 
     return (
         // Top padding is pt-[50px]. Removed horizontal padding to be applied to the header content only.
-        <section id="process" className="pt-[50px] pb-[10px] overflow-hidden">
+        <section id="process" className="pt-[50px] pb-[60px] overflow-hidden">
 
             {/* Header content needs to keep the horizontal padding and centering */}
             <div className="max-w-7xl mx-auto px-5 sm:px-20">
