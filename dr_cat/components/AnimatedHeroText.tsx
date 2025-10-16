@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 
 interface AnimatedHeroTextProps {
-  text: string
+  text: string | string[]
   className?: string
 }
 
@@ -13,12 +13,15 @@ export default function AnimatedHeroText({ text, className = "" }: AnimatedHeroT
   useEffect(() => {
     if (!textRef.current) return
 
+    // Handle both string and array inputs
+    const textString = Array.isArray(text) ? text.join(' ') : text
+
     // Split text into words for staggered animation
-    const words = text.split(' ')
+    const words = textString.split(' ')
 
     // Create word spans with immediate styling to prevent FOUT
     textRef.current.innerHTML = words
-      .map((word, index) =>
+      .map((word: string, index: number) =>
         `<span class="word" style="
           --delay: ${index * 0.1}s;
           font-variation-settings: 'wght' 170;

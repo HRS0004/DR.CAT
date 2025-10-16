@@ -105,7 +105,7 @@ export default function BlogSection() {
           <button
             onClick={rotateContent}
             disabled={isTransitioning}
-            className={`glow-button btn-smooth group relative disabled:bg-gray-600 disabled:cursor-not-allowed text-white py-3 px-8 rounded-full font-semibold overflow-hidden transition-all duration-300 shadow-md hover:shadow-xl ${
+            className={`glow-button btn-smooth group relative disabled:bg-gray-600 disabled:cursor-not-allied text-white py-3 px-8 rounded-full font-semibold overflow-hidden transition-all duration-300 shadow-md hover:shadow-xl border border-white ${
               isTransitioning ? 'loading' : ''
             }`}
             style={{ backgroundColor: '#1F2633' }}
